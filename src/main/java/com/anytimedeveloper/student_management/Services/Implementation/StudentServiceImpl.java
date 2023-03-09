@@ -31,8 +31,19 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public ResponseEntity<Student> updateStudentById(Long studentId ,Student student) {
-        return null;
+    public ResponseEntity<Student> updateStudentById(Long studentId ,Student updatedStudent) {
+        Student student = studentRepository.findById(studentId).get();
+        if(student == null){
+            return new ResponseEntity<>(student, HttpStatus.NOT_FOUND);
+        }
+        student.setFirstName(updatedStudent.getFirstName()=="" ? student.getFirstName() : updatedStudent.getFirstName());
+        student.setLastName(updatedStudent.getLastName()=="" ? student.getLastName() : updatedStudent.getLastName());
+        student.setEmail(updatedStudent.getEmail()=="" ? student.getEmail() : updatedStudent.getEmail());
+        student.setBranch(updatedStudent.getBranch()=="" ? student.getBranch() : updatedStudent.getBranch());
+        student.setDivision(updatedStudent.getDivision()=="" ? student.getDivision() : updatedStudent.getDivision());
+
+        studentRepository.save(student);
+        return new ResponseEntity<>(student,HttpStatus.OK);
     }
 
     @Override

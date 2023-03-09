@@ -1,14 +1,15 @@
 package com.anytimedeveloper.student_management.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 @Entity
@@ -24,7 +25,5 @@ public class Student {
     private String email;
     private String division;
     private String branch;
-    @DateTimeFormat(pattern = "dd-MM-yyyy")
-    private Date dateOfBirth;
 
 }

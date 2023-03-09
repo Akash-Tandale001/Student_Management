@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/student")
 public class StudentController {
@@ -18,12 +20,17 @@ public class StudentController {
     public ResponseEntity<Student> getStudentById(@PathVariable("id") Long studentId){
         return studentService.getStudentById(studentId);
     }
+
+    @GetMapping("/getAllStudent")
+    public ResponseEntity<List<Student>> getAllStudent(){
+        return studentService.getAllStudent();
+    }
     @PostMapping("/addStudent")
-    public ResponseEntity<String> addStudent(Student student){
+    public ResponseEntity<String> addStudent(@RequestBody Student student){
         return studentService.addStudent(student);
     }
     @PostMapping("/updateStudent/{id}")
-    public ResponseEntity<Student> updateStudent(@PathVariable("id") Long studentId , Student student){
+    public ResponseEntity<Student> updateStudent(@PathVariable("id") Long studentId ,@RequestBody Student student){
         return studentService.updateStudentById(studentId,student);
     }
     @DeleteMapping("/{id}")
